@@ -1,0 +1,53 @@
+<app-navigate></app-navigate>
+<div class="container">
+  <button [routerLink]="[ '/addTodo']" class="btn btn-outline-success mt-3 mb-3">Ajouter Todo</button>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Description</th>
+        <th scope="col">Date Ajout</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let t of todos ; index as i">
+      <td>{{ i }}</td>
+      <td>{{t.text}}</td>
+      <td>{{t.savedAt }}</td>     
+      <td><button class="btn btn-outline-success"(click)="done(t)" >Done</button>
+      <button class ="btn btn-outline-danger"(click)="deleteTodo(t)">supprimer</button>
+    <button class ="btn btn-outline-warning"[routerLink]="[ '/updateTodo/'+t._id]">modifier</button></td>
+    </tr> 
+    
+    </tbody>
+  </table>
+</div>
+<hr>
+<div class="container">
+  <h2 class="mt-3 mb-3">Done !</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Description</th>
+        <th scope="col">Date Ajout</th>
+        <th scope="col">Date Fin</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let v of dones; index as i1">
+        <td>{{ i1 }}</td>
+        <td>{{v.text}}</td>
+        <td>{{v.savedAt }}</td>
+       
+        <td>{{v.completedAt}}</td>
+        <td>
+        <button class ="btn btn-outline-danger"(click)="deleteTodo(v)">supprimer</button>
+      </td>
+      </tr> 
+    </tbody>
+  </table>
+</div>
+<app-footer></app-footer>
